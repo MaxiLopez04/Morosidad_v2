@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mora crediticia · Jujuy</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header>
+  <div class="brand-row">
+    <img class="logo-mark" src="assets/img/logo.png">
+    <div class="titles">
+      <h1>Mora crediticia · Jujuy</h1>
+      <div class="badge">16 departamentos</div>
+      <p class="subtitle">Seleccioná un departamento en el mapa o en el listado para ver el detalle de deudores y mora.</p>
+    </div>
+  </div>
+  <div class="month-picker">
+    <label for="monthSelect">Período</label>
+    <select id="monthSelect"></select>
+  </div>
+</header>
+
+<div class="body-layout">
+  <div class="map-col">
+    <div class="map-wrap" id="mapWrap">
+      <svg id="mapSvg" viewBox="0 0 800 805" role="img" aria-label="Mapa de departamentos de la provincia de Jujuy">
+        <defs>
+          <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+            <feDropShadow dx="0" dy="0" stdDeviation="5" flood-color="#FF6B4A" flood-opacity="0.45"/>
+          </filter>
+        </defs>
+        <g id="deptosGroup"></g>
+      </svg>
+      <div class="tooltip" id="tooltip"></div>
+    </div>
+    <div class="legend">
+      <span>Menos mora</span>
+      <div class="bar"></div>
+      <span>Más mora</span>
+    </div>
+
+    <div class="info-card">
+      <h3 class="info-card-title">¿Qué es la morosidad?</h3>
+      <p class="info-card-text">
+        Se considera <strong>deudor en mora</strong> a la persona u organización que no cumplió
+        en tiempo y forma con el pago de una obligación crediticia. El porcentaje de mora que
+        muestra este mapa surge de dividir la cantidad de deudores en mora sobre el total de
+        deudores únicos registrados en cada departamento.
+      </p>
+    </div>
+  </div>
+
+  <div class="panel-col">
+    <div class="fade-in" id="panelContent">
+      <div class="panel-title-row">
+        <h2 id="panelTitle">Provincia de Jujuy</h2>
+        <button id="resetBtn">Ver provincia ↺</button>
+      </div>
+      <p class="panel-desc" id="panelDesc">Totales agregados de toda la provincia</p>
+
+      <div class="kpi-grid">
+        <div class="kpi-card accent-teal">
+          <div class="label">Deudores únicos</div>
+          <div class="value kpi-value" id="kpiDeudoresUnicos">-</div>
+        </div>
+        <div class="kpi-card accent-terra">
+          <div class="label">Deudores en mora</div>
+          <div class="value kpi-value" id="kpiDeudoresMora">-</div>
+        </div>
+        <div class="kpi-card accent-teal">
+          <div class="label">Monto deuda total</div>
+          <div class="value kpi-value" id="kpiMontoTotal">-</div>
+        </div>
+        <div class="kpi-card accent-terra">
+          <div class="label">Monto deuda en mora</div>
+          <div class="value kpi-value" id="kpiMontoMora">-</div>
+        </div>
+      </div>
+
+      <div class="pct-box">
+        <div>
+          <div class="label">Porcentaje en mora</div>
+          <div class="value kpi-value" id="pctValue">-</div>
+        </div>
+        <div class="donut" id="donut"><div class="hole"></div></div>
+      </div>
+
+      <div class="geo-note" id="geoNote">
+        <span class="geo-note-icon">i</span>
+        <span id="geoNoteText"></span>
+      </div>
+
+      <h3 class="section-label">Ranking por % de mora</h3>
+      <div id="ranking"></div>
+    </div>
+  </div>
+</div>
+
+<div class="extra-sections">
+  <!-- ---------------- Indicadores complementarios (carrusel de tarjetas) ----------------
+       Todos los valores de este bloque son texto plano editable a mano (no se calculan a
+       partir de DATOS_POR_MES). Para actualizarlos: editar directamente el contenido de
+       cada <div class="kpi-slide-value"> / <p class="kpi-slide-note"> más abajo en el HTML. -->
+  <div class="kpi-carousel-section" id="kpiCarouselSection">
+    <div class="kpi-carousel-header">
+      <h3 class="kpi-carousel-title">Indicadores complementarios</h3>
+    </div>
+
+    <div class="kpi-carousel-row">
+      <button class="kpi-arrow kpi-arrow-side" id="kpiPrevBtn" aria-label="Indicador anterior">‹</button>
+      <div class="kpi-carousel-viewport" id="kpiViewport">
+        <div class="kpi-carousel-track" id="kpiTrack"></div>
+      </div>
+      <button class="kpi-arrow kpi-arrow-side" id="kpiNextBtn" aria-label="Indicador siguiente">›</button>
+    </div>
+
+    <div class="kpi-carousel-dots" id="kpiDots"></div>
+  </div>
+
+  <!-- ---------------- Datos y gráficos a nivel provincial ---------------- -->
+  <div class="province-charts-section" id="provinceChartsSection">
+    <div class="province-charts-header">
+      <h3 class="province-charts-title">Datos y gráficos a nivel provincial</h3>
+    </div>
+
+    <!-- Gráfico 1: Mora por tipo de entidad -->
+    <div class="chart-card">
+      <div class="chart-card-header">
+        <h4 class="chart-card-subtitle">Mora por tipo de entidad</h4>
+        <select class="chart-select" id="entidadTipoMetricSelect">
+          <option value="deudoresTotal">Deudores únicos totales</option>
+          <option value="deudoresMora">Deudores únicos en mora</option>
+          <option value="montoTotal">Monto de deuda total (miles de $)</option>
+          <option value="montoMora">Monto de deuda en mora (miles de $)</option>
+        </select>
+      </div>
+      <p class="chart-card-desc">
+        Clasificación de los deudores según el tipo de entidad acreedora en base al codigo
+        del registro IEF del BCRA. Categorías: bancos (códigos 1 a 448), 
+        compañías financieras y cajas de crédito (44xxx y 45xxx), PNFC-otro (55xxx) 
+        y PNFC-emisoras no bancarias de tarjetas (7xxxx).
+      </p>
+      <div class="chart-canvas-wrap">
+        <canvas id="entidadTipoChart"></canvas>
+      </div>
+    </div>
+
+    <!-- Gráfico 2: Pirámide poblacional por edad y sexo -->
+    <div class="chart-card">
+      <div class="chart-card-header">
+        <h4 class="chart-card-subtitle">Distribución de deudores por edad y sexo</h4>
+        <select class="chart-select" id="edadSexoMetricSelect">
+          <option value="montoTotal">Monto de deuda total</option>
+          <option value="deudoresTotal">Deudores únicos totales</option>
+          <option value="montoMora">Monto de deuda en mora</option>
+          <option value="deudoresMora">Deudores únicos en mora</option>
+          <option value="montoPromTotal">Monto promedio de deuda total</option>
+          <option value="montoPromMora">Monto promedio de deuda en mora</option>
+        </select>
+      </div>
+      <p class="chart-card-desc">
+        Deudores agrupados por rango etario y sexo. Los rangos "Hasta 25" y
+        "25-34" corresponden a jóvenes, y "65 o más" a adultos mayores. Se
+        excluyen los casos sin dato de edad registrado. Los montos están
+        expresados en miles de pesos.
+      </p>
+      <div class="chart-canvas-wrap">
+        <canvas id="edadSexoChart"></canvas>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ---------------- Descargas (acordeón tipo side-panel) ---------------- -->
+  <div class="downloads-section">
+    <button class="downloads-toggle" id="downloadsToggle" aria-expanded="false" aria-controls="downloadsPanel">
+      <span class="downloads-toggle-left">
+        <span class="downloads-toggle-icon" id="downloadsToggleIcon">⌄</span>
+        <span class="downloads-toggle-text">
+          <span class="downloads-toggle-title">Descargas</span>
+          <span class="downloads-toggle-sub">Informe en PDF y datos en Excel del período seleccionado</span>
+        </span>
+      </span>
+      <span class="downloads-toggle-badge" id="downloadsBadge">2 archivos</span>
+    </button>
+
+    <div class="downloads-panel" id="downloadsPanel">
+      <div class="downloads-panel-inner">
+        <div class="download-card">
+          <div class="download-card-icon pdf">PDF</div>
+          <div class="download-card-body">
+            <div class="download-card-title">Informe de mora crediticia</div>
+            <div class="download-card-desc">Resumen ejecutivo y totales provinciales del período. Documento provisorio.</div>
+          </div>
+          <a class="download-card-btn" id="downloadPdfBtn" download>Descargar</a>
+        </div>
+
+        <div class="download-card">
+          <div class="download-card-icon xlsx">XLS</div>
+          <div class="download-card-body">
+            <div class="download-card-title">Datos por departamento</div>
+            <div class="download-card-desc">Planilla con deudores, montos y % de mora de los 16 departamentos.</div>
+          </div>
+          <a class="download-card-btn" id="downloadXlsxBtn" download>Descargar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ---------------- Notas metodológicas ---------------- -->
+  <div class="methodology-section">
+    <h3 class="methodology-title">Notas metodológicas</h3>
+    <div class="methodology-body">
+      <p>
+        <strong>Fuente de los datos:</strong> Central de deudores — Banco Central de La Republica Argentina.
+      </p>
+      <p>
+        <strong>Definición de deudor en mora:</strong> Se considera como deudor en mora a aquel deudor que se encuentre en situacion 3, 4 y 5.
+      </p>
+      <p>
+        <strong>Universo Considerado:</strong> Se toma en cuenta para el calculo las personas fisicas residentes en Argentina con saldos positivos. Se excluyen los fideicomisos financieros, entidades de garantia reciproca y PGCP.
+      </p>
+      <p>
+        <strong>Asignación geográfica:</strong> La geolocalizacion se realizo a partir de los códigos postales. Los
+        registros que no pueden asignarse a ningún departamento se incluyen igualmente en el
+        total provincial y se informan de forma agregada como "sin geolocalizar".
+      </p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  Geometría de departamentos simplificada a partir de datos INDEC.
+</footer>
+
+<!-- Librería de gráficos -->
+<script src="js/vendor/chart.umd.js"></script>
+
+<!-- Datos del dashboard -->
+<script src="js/data/departamentos-geo.js"></script>
+<script src="js/data/datos-por-mes.js"></script>
+
+<!-- Períodos con archivos descargables -->
+<script src="js/data/descargables.js"></script>
+
+<!-- Lógica principal (debe ir al final) -->
+<script src="js/script.js"></script>
+</body>
+</html>
