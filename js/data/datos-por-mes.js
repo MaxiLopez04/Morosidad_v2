@@ -56,8 +56,8 @@ window.DATOS_POR_MES = {
       { icono: "mayor",  valor: "15%",       label: "de los deudores esta conformado por adultos mayores (+65 años)",            nota: "El 13% de ellos se encuentra en mora",                                                              color: "teal" },
       { icono: "monto",  valor: "$ 1.395.210", label: "Monto promedio de deuda entre jóvenes (25-34 años)",                                                                                  color: "azul" },
       { icono: "monto",  valor: "$ 1.829.955", label: "Monto promedio de deuda en adultos mayores (+65 años)",                                                                                                color: "azul" },
-      { icono: "banco",  valor: "51%",       label: "de la deuda en mora está en los bancos",                          nota: "El 82% se concentra en los 5 principales: Macro, Galicia, La Nación, Santander y BBVA",            color: "coral" },
-      { icono: "tarjeta",valor: "25%",       label: "de la deuda en mora está en PNFC (emisoras no bancarias de tarjetas)", nota: "El 94% se concentra en las 3 principales: Tarjeta Naranja, Tarjeta Sucrédito y Mercado Libre", color: "amarillo" }
+      { icono: "banco",  valor: "51%",       label: "de la deuda en mora está en los bancos",                                      color: "coral" },
+      { icono: "tarjeta",valor: "25%",       label: "de la deuda en mora está en PNFC (emisoras no bancarias de tarjetas)",  color: "amarillo" }
     ]
   },
   "2026-07": {
@@ -114,8 +114,8 @@ window.DATOS_POR_MES = {
       { icono: "mayor",  valor: "15%",       label: "de los deudores esta conformado por adultos mayores (+65 años)",            nota: "El 13% de ellos se encuentra en mora",                                                              color: "teal" },
       { icono: "monto",  valor: "$ 1.395.210", label: "Monto promedio de deuda entre jóvenes (25-34 años)",                                                                                  color: "azul" },
       { icono: "monto",  valor: "$ 1.829.955", label: "Monto promedio de deuda en adultos mayores (+65 años)",                                                                                                color: "azul" },
-      { icono: "banco",  valor: "51%",       label: "de la deuda en mora está en los bancos",                          nota: "El 82% se concentra en los 5 principales: Macro, Galicia, La Nación, Santander y BBVA",            color: "coral" },
-      { icono: "tarjeta",valor: "25%",       label: "de la deuda en mora está en PNFC (emisoras no bancarias de tarjetas)", nota: "El 94% se concentra en las 3 principales: Tarjeta Naranja, Tarjeta Sucrédito y Mercado Libre", color: "amarillo" }
+      { icono: "banco",  valor: "51%",       label: "de la deuda en mora está en los bancos",                                    color: "coral" },
+      { icono: "tarjeta",valor: "25%",       label: "de la deuda en mora está en PNFC (emisoras no bancarias de tarjetas)",  color: "amarillo" }
     ]
   },
   "2026-08": {
