@@ -176,64 +176,6 @@ window.DATOS_POR_MES = {
       { icono: "tarjeta",valor: "25%",       label: "de la deuda en mora está en PNFC (emisoras no bancarias de tarjetas)",  color: "amarillo" }
     ]
   },
-  "2026-08": {
-    departamentos: {
-      doctor_manuel_belgrano: { deudoresUnicos: 123160, deudoresMora: 27211, montoTotal: 484999400000, montoMora: 69207023000 },
-      san_pedro:               { deudoresUnicos: 35973, deudoresMora: 10753, montoTotal: 124069210000, montoMora: 22850670000 },
-      palpala:                 { deudoresUnicos: 30668, deudoresMora: 7395, montoTotal: 103663017000, montoMora: 16774326000 },
-      el_carmen:               { deudoresUnicos: 35886, deudoresMora: 8056, montoTotal: 147150112000, montoMora: 20485312000 },
-      ledesma:                 { deudoresUnicos: 29811, deudoresMora: 8389, montoTotal: 111406195000, montoMora: 19803704000 },
-      san_antonio:             { deudoresUnicos: 2648,  deudoresMora: 595,  montoTotal: 9039705000,  montoMora: 1482085000 },
-      santa_barbara:           { deudoresUnicos: 8524,  deudoresMora: 2589, montoTotal: 27022486000,  montoMora: 5018868000 },
-      tilcara:                 { deudoresUnicos: 4982,  deudoresMora: 823,  montoTotal: 17505939000,  montoMora: 1740229000 },
-      tumbaya:                 { deudoresUnicos: 1148,  deudoresMora: 222,  montoTotal: 3873288000,  montoMora: 516597000 },
-      humahuaca:                { deudoresUnicos: 5401,  deudoresMora: 964,  montoTotal: 18844040000,  montoMora: 1998838000 },
-      cochinoca:                { deudoresUnicos: 5239,  deudoresMora: 789,  montoTotal: 25177182000,  montoMora: 3365318000 },
-      valle_grande:             { deudoresUnicos: 804,  deudoresMora: 164,  montoTotal: 2477384000,  montoMora: 294085000 },
-      yavi:                     { deudoresUnicos: 4847,  deudoresMora: 667,  montoTotal: 19997129000,  montoMora: 1938810000 },
-      santa_catalina:           { deudoresUnicos: 172,   deudoresMora: 20,  montoTotal: 546784000,  montoMora: 38789000 },
-      rinconada:                { deudoresUnicos: 150,   deudoresMora: 19,  montoTotal: 1080641000,   montoMora: 68992000 },
-      susques:                  { deudoresUnicos: 557,  deudoresMora: 96,  montoTotal: 3610424000,  montoMora: 584983000 }
-    },
-    
-    provincia: {
-      deudoresUnicos: 291362,
-      deudoresMora:   69031,
-      montoTotal:     1105160355000,
-      montoMora:      166734253000
-    },
-    
-    entidadesTipo: {
-      bancos:       { nombre: "Bancos",                                   deudoresTotal: 188887, deudoresMora: 18961, montoTotal: 775364057, montoMora: 81073933 },
-      financieras:  { nombre: "Compañías financieras",                    deudoresTotal: 45473,  deudoresMora: 6187,  montoTotal: 72198110,  montoMora: 8125658 },
-      pnfcOtro:     { nombre: "PNFC - otro",                              deudoresTotal: 54052,  deudoresMora: 26786, montoTotal: 88393532,  montoMora: 34699157 },
-      pnfcTarjetas: { nombre: "PNFC - emisoras no bancarias de tarjetas", deudoresTotal: 159615, deudoresMora: 39012, montoTotal: 169204656, montoMora: 42835505 }
-    },
-  
-    edadSexo: [
-      { rango: "Hasta 25", sexo: "F", deudoresTotal: 9193,  deudoresMora: 3013,  montoTotal: 6437891,   montoMora: 2083146,  montoPromTotal: 503.71,  montoPromMora: 550.81 },
-      { rango: "Hasta 25", sexo: "M", deudoresTotal: 9604,  deudoresMora: 3156,  montoTotal: 10472074,  montoMora: 3191124,  montoPromTotal: 747.04,  montoPromMora: 764.89 },
-      { rango: "25-34",    sexo: "F", deudoresTotal: 32016, deudoresMora: 9332,  montoTotal: 63992192,  montoMora: 14505739, montoPromTotal: 1150.03, montoPromMora: 1050.61 },
-      { rango: "25-34",    sexo: "M", deudoresTotal: 30977, deudoresMora: 10128, montoTotal: 89779523,  montoMora: 22049262, montoPromTotal: 1586.38, montoPromMora: 1376.70 },
-      { rango: "35-44",    sexo: "F", deudoresTotal: 33143, deudoresMora: 8302,  montoTotal: 123461225, montoMora: 18917866, montoPromTotal: 1935.49, montoPromMora: 1419.83 },
-      { rango: "35-44",    sexo: "M", deudoresTotal: 33445, deudoresMora: 9501,  montoTotal: 170919630, montoMora: 32220012, montoPromTotal: 2583.04, montoPromMora: 2015.01 },
-      { rango: "45-54",    sexo: "F", deudoresTotal: 29893, deudoresMora: 6147,  montoTotal: 130606334, montoMora: 15204004, montoPromTotal: 2174.31, montoPromMora: 1484.77 },
-      { rango: "45-54",    sexo: "M", deudoresTotal: 29366, deudoresMora: 6789,  montoTotal: 164186757, montoMora: 21861963, montoPromTotal: 2860.85, montoPromMora: 1926.16 },
-      { rango: "55-64",    sexo: "F", deudoresTotal: 21209, deudoresMora: 3596,  montoTotal: 89560247,  montoMora: 10049213,  montoPromTotal: 2148.91, montoPromMora: 1634.02 },
-      { rango: "55-64",    sexo: "M", deudoresTotal: 17686, deudoresMora: 3084,  montoTotal: 107391177, montoMora: 11849314, montoPromTotal: 3173.69, montoPromMora: 2316.13 },
-      { rango: "65 o más", sexo: "F", deudoresTotal: 24835, deudoresMora: 3383,  montoTotal: 72482391,  montoMora: 7924585,  montoPromTotal: 1664.65, montoPromMora: 1412.33 },
-      { rango: "65 o más", sexo: "M", deudoresTotal: 19473, deudoresMora: 2539,  montoTotal: 72372678,  montoMora: 6624192,  montoPromTotal: 2272.94, montoPromMora: 1616.45 }
-    ],
-    
-    indicadores: [
-      { icono: "joven",  valor: "21%",       label: "de los deudores esta conformado por jovenes (25-34 años)",                         nota: "3 de cada 10 de ellas está en mora",                                                              color: "teal" },
-      { icono: "mayor",  valor: "15%",       label: "de los deudores esta conformado por adultos mayores (+65 años)",            nota: "El 13% de ellos se encuentra en mora",                                                              color: "teal" },
-      { icono: "monto",  valor: "$ 1.370.0647", label: "Monto promedio de deuda entre jóvenes (25-34 años)",                                                                                  color: "azul" },
-      { icono: "monto",  valor: "$ 1.921.588", label: "Monto promedio de deuda en adultos mayores (+65 años)",                                                                                                color: "azul" },
-      { icono: "banco",  valor: "48%",       label: "de la deuda en mora está en los bancos",                                      color: "coral" },
-      { icono: "tarjeta",valor: "25%",       label: "de la deuda en mora está en PNFC (emisoras no bancarias de tarjetas)",  color: "amarillo" }
-    ]
-  },
   "2026-09": {
     departamentos: {
       doctor_manuel_belgrano: { deudoresUnicos: 124363, deudoresMora: 27395, montoTotal: 493628196000, montoMora: 68105474000 },
